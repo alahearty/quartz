@@ -1,0 +1,91 @@
+﻿<Page x:Class="quartz.application.reservoirs.Views.ReservoirPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:quartz.application.reservoirs.Views"
+      xmlns:sections="clr-namespace:quartz.application.reservoirs.Views.ReservoirSections"
+      mc:Ignorable="d" FontFamily="Fira Code"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ReservoirPage">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            
+        </Style>
+        <Style x:Key="Unit" TargetType="TextBlock">
+            <Setter Property="Margin" Value="3,0,8,0"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Margin" Value="0,16"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!--<Border Grid.Row="1" Padding="3" BorderThickness="0,1,0,0" BorderBrush="SlateGray" Background="White">
+            <Button HorizontalAlignment="Right" Padding="8,5" >Save Changes</Button>
+        </Border>-->
+        <DockPanel>
+
+            <sections:NavItems DockPanel.Dock="Right" Background="White"  Width="200" />
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" >
+                <Border Width="800" Margin="20" Padding="20" Background="White">
+                <StackPanel Orientation="Vertical" >
+                        <TextBlock Margin="0,10" FontSize="18" Text="{Binding Name}"/>
+                    <GroupBox Name="Details">
+                        <GroupBox.Header>
+                            <TextBlock FontSize="16">
+                            Details
+                            </TextBlock>
+                        </GroupBox.Header>
+                        <sections:Details />
+                    </GroupBox>
+                    <GroupBox Name="Impurities">
+                        <GroupBox.Header>
+                            <TextBlock FontSize="16">
+                           Impurities
+                            </TextBlock>
+                        </GroupBox.Header>
+                        <sections:Impurities/>
+                    </GroupBox>
+                    <GroupBox Name="AquiferParameters">
+                        <GroupBox.Header>
+                            <TextBlock FontSize="16">
+                           Aquifer Parameters
+                            </TextBlock>
+                        </GroupBox.Header>
+                        <sections:AquiferParameters/>
+                    </GroupBox>
+                    <!--<GroupBox Name="BHP">
+                        <GroupBox.Header>
+                            <TextBlock FontSize="16">
+                            BHP
+                            </TextBlock>
+                        </GroupBox.Header>
+                        <sections:BHP/>
+                    </GroupBox>-->
+                    <GroupBox Name="Rock">
+                        <GroupBox.Header>
+                            <TextBlock FontSize="16">
+                          Rock
+                            </TextBlock>
+                        </GroupBox.Header>
+                        <sections:Rock/>
+                    </GroupBox>
+                    <GroupBox  Name="PVT">
+                        <GroupBox.Header>
+                            <TextBlock FontSize="16">
+                           PVT
+                            </TextBlock>
+                        </GroupBox.Header>
+                        <sections:PVT/>
+                    </GroupBox>
+                </StackPanel>
+                </Border>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+   
+</Page>

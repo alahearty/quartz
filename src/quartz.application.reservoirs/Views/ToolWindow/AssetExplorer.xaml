@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="quartz.application.reservoirs.Views.ToolWindow.AssetExplorer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:quartz.application.reservoirs.Views.ToolWindow"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="SelectionColor" Color="#FF00528B"/>
+        <SolidColorBrush x:Key="HoverSelectionColor" Color="#331E90FF"/>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="0" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="FlysubMenuZerobtnStyle">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" BorderThickness="{TemplateBinding BorderThickness}"  
+                             BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="True" TextBlock.Foreground="{TemplateBinding Foreground}">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer>
+        
+    <ItemsControl ItemsSource="{Binding Reservoirs}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Button Style="{DynamicResource FlysubMenuZerobtnStyle}"   BorderBrush="LightGray" 
+                    Command="{Binding Command}" 
+                    BorderThickness="0,0,0,.5" Margin="1,1,1,1">
+                    <Border x:Name="_main" Padding="2,0,8,1" Margin="1" Height="40" >
+                        <DockPanel>
+                            <TextBlock Text="{Binding ReservoirIndex.User}" DockPanel.Dock="Bottom" />
+                            <TextBlock Text="{Binding ReservoirIndex.ReservoirName}" FontSize="18"/>
+                        </DockPanel>
+                    </Border>
+                </Button>
+                <DataTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" TargetName="_main" Value="{StaticResource HoverSelectionColor}"/>
+                    </Trigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+    </ScrollViewer>
+</UserControl>
