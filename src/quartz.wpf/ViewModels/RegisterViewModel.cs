@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.ViewModel;
+﻿using Prism.Commands;
+using Prism.Mvvm;
 using quartz.wpf.common.AuthModel;
 using quartz.wpf.common.Client;
 using quartz.wpf.common.Interfaces;
@@ -15,7 +15,7 @@ using System.Windows.Controls;
 
 namespace quartz.wpf.ViewModels
 {
-    public class RegisterViewModel: NotificationObject
+    public class RegisterViewModel: BindableBase
     {
         private DelegateCommand _createCommand;
         private User _user;

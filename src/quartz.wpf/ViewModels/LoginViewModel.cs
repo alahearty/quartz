@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.ViewModel;
+﻿using Prism.Commands;
+using Prism.Mvvm;
 using quartz.wpf.common.AuthModel;
 using quartz.wpf.common.Client;
 using quartz.wpf.UserAuthentication;
@@ -13,7 +13,7 @@ using System.Windows.Controls;
 
 namespace quartz.wpf.ViewModels
 {
-    public class LoginViewModel: NotificationObject
+    public class LoginViewModel: BindableBase
     {
         private readonly APIClient aPIclient;
         private DelegateCommand _loginCommand;

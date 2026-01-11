@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.ViewModel;
+﻿using Prism.Commands;
+using Prism.Mvvm;
 using quartz.wpf.common.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace quartz.wpf.ViewModels
 {
-    public class ShellViewModel: NotificationObject
+    public class ShellViewModel: BindableBase
     {
         private readonly IAuthenticationService authenticationService;
 

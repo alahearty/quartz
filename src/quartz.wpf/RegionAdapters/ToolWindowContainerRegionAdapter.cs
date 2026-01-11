@@ -1,5 +1,7 @@
-﻿using ActiproSoftware.Windows.Controls.Docking;
-using Microsoft.Practices.Prism.Regions;
+﻿#if ACTIPRO
+using ActiproSoftware.Windows.Controls.Docking;
+#endif
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +11,19 @@ using System.Windows;
 
 namespace quartz.wpf.RegionAdapters
 {
-    public class ToolWindowContainerRegionAdapter : RegionAdapterBase<ToolWindowContainer>
+    public class ToolWindowContainerRegionAdapter : RegionAdapterBase<object>
     {
         public ToolWindowContainerRegionAdapter(IRegionBehaviorFactory factory) : base(factory) { }
 
-        protected override void Adapt(IRegion region, ToolWindowContainer regionTarget)
+        protected override void Adapt(IRegion region, object regionTarget)
         {
+            dynamic target = regionTarget;
             region.Views.CollectionChanged += (sender, e) => {
                 if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
                 {
                     foreach (FrameworkElement element in e.NewItems)
                     {
-                        regionTarget.Items.Add(element);
+                        target.Items.Add(element);
                     }
                 }
 
@@ -28,7 +31,7 @@ namespace quartz.wpf.RegionAdapters
                 {
                     foreach (FrameworkElement element in e.OldItems)
                     {
-                        regionTarget.Items.Remove(element);
+                        target.Items.Remove(element);
                     }
 
                 }

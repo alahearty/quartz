@@ -1,5 +1,7 @@
-﻿using ActiproSoftware.Windows.Controls.Docking;
-using Microsoft.Practices.Prism.Regions;
+﻿#if ACTIPRO
+using ActiproSoftware.Windows.Controls.Docking;
+#endif
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +11,12 @@ using System.Windows;
 
 namespace quartz.wpf.RegionAdapters
 {
-    public class MDIHostRegionAdapter : RegionAdapterBase<TabbedMdiContainer>
+    public class MDIHostRegionAdapter : RegionAdapterBase<object>
     {
 
         public MDIHostRegionAdapter(IRegionBehaviorFactory factory) : base(factory) { }
 
-        protected override void Adapt(IRegion region, TabbedMdiContainer regionTarget)
+        protected override void Adapt(IRegion region, object regionTarget)
         {
             region.Views.CollectionChanged += (sender, e) => {
                 if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)

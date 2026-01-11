@@ -1,13 +1,15 @@
 ﻿using System.Windows;
-using Microsoft.Practices.Prism.UnityExtensions;
-using Microsoft.Practices.Unity;
+using Prism.Unity;
+using Unity;
 using System.Windows.Controls.Ribbon;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.ServiceLocation;
+using Prism.Regions;
+using Prism.Ioc;
 using quartz.wpf.RegionAdapters;
-using Microsoft.Practices.Prism.Modularity;
+using Prism.Modularity;
+#if ACTIPRO
 using ActiproSoftware.Windows.Controls.Docking;
 using ActiproSoftware.Windows.Prism.Regions;
+#endif
 using quartz.wpf.common;
 using quartz.wpf.common.Interfaces;
 using quartz.application.reservoirs.Module;
@@ -30,14 +32,17 @@ namespace quartz.wpf
         {
             RegionAdapterMappings mappings = base.ConfigureRegionAdapterMappings();
 
-            var ribbonTabRegionAdapter = ServiceLocator.Current.GetInstance<RibbonTabRegionAdapter>();
-            var mdiHostRegionAdapter = ServiceLocator.Current.GetInstance<MDIHostRegionAdapter>();
-            var toolWindowContainerRegionAdapter = ServiceLocator.Current.GetInstance<ToolWindowContainerRegionAdapter>();
-            var actiproDockSiteRegionAdapter = ServiceLocator.Current.GetInstance<DockSiteRegionAdapter>();
+            var containerProvider = Container.Resolve<IContainerProvider>();
+            var ribbonTabRegionAdapter = containerProvider.Resolve<RibbonTabRegionAdapter>();
+            var mdiHostRegionAdapter = containerProvider.Resolve<MDIHostRegionAdapter>();
+            var toolWindowContainerRegionAdapter = containerProvider.Resolve<ToolWindowContainerRegionAdapter>();
+#if ACTIPRO
+            var actiproDockSiteRegionAdapter = containerProvider.Resolve<DockSiteRegionAdapter>();
+            mappings.RegisterMapping(typeof(DockSite), actiproDockSiteRegionAdapter);
+            mappings.RegisterMapping(typeof(TabbedMdiContainer), mdiHostRegionAdapter);
+#endif
 
             mappings.RegisterMapping(typeof(RibbonTab), ribbonTabRegionAdapter);
-            mappings.RegisterMapping(typeof(TabbedMdiContainer), mdiHostRegionAdapter);
-            mappings.RegisterMapping(typeof(DockSite), actiproDockSiteRegionAdapter);
             mappings.RegisterMapping(typeof(ToolWindowContainer), toolWindowContainerRegionAdapter);
 
             return mappings;
@@ -45,9 +50,7 @@ namespace quartz.wpf
 
         protected override DependencyObject CreateShell()
         {
-            Container.RegisterType<IAuthenticationService, AuthenticationService>(new ContainerControlledLifetimeManager());
-            Container.RegisterType<Shell>();
-            return this.Container.Resolve<Shell>() as Window;
+            return Container.Resolve<Shell>() as Window;
         }
 
 
@@ -58,16 +61,19 @@ namespace quartz.wpf
             App.Current.MainWindow.Show();
         }
 
-        protected override void InitializeModules()
-        {
-            this.Initialize();
-            base.InitializeModules();
-        }
 
-        private void Initialize()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Container.RegisterType<ITabDockService, TabbedWindowExtension>();
-            Container.RegisterType<IAPIClient, APIClient>();
+            containerRegistry.RegisterSingleton<IAuthenticationService, AuthenticationService>();
+            containerRegistry.Register<Shell>();
+            containerRegistry.Register<ITabDockService, TabbedWindowExtension>();
+            containerRegistry.Register<IAPIClient, APIClient>();
+            containerRegistry.Register<RibbonTabRegionAdapter>();
+            containerRegistry.Register<MDIHostRegionAdapter>();
+            containerRegistry.Register<ToolWindowContainerRegionAdapter>();
+#if ACTIPRO
+            containerRegistry.Register<DockSiteRegionAdapter>();
+#endif
         }
     }
 }

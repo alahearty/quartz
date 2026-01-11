@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Unity;
 using quartz.wpf.common.AuthModel;
 using quartz.wpf.common.Client;
 using quartz.wpf.common.Interfaces;

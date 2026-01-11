@@ -1,5 +1,5 @@
 ﻿using ActiproSoftware.Windows.Controls.Docking;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Regions;
 using quartz.wpf.common.Interfaces;
 using System;
 using System.Collections.Generic;
