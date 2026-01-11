@@ -4,6 +4,7 @@ using Quartz.Application.Reservoirs.CommandInteractors;
 using Quartz.Application.Reservoirs.Interfaces;
 using Quartz.Persistence.Nhibernate;
 using Quartz.Persistence.Nhibernate.Reservoirs;
+using System;
 
 namespace Quartz.Core.Domain.Test
 {
@@ -17,11 +18,11 @@ namespace Quartz.Core.Domain.Test
             services.AddSingleton<INhibernateTransaction, NhibernateTransactionTest>();
             services.AddSingleton<IReservoirRepository, ReservoirRepository>();
             services.AddSingleton<IReservoirQueries, ReservoirQueries>();
-            services.AddMediatR(typeof(CreateReservoirInteractor).Assembly);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateReservoirInteractor).Assembly));
 
             ServiceProvider = services.BuildServiceProvider();
         }
 
-        protected ServiceProvider ServiceProvider { get; }
+        protected IServiceProvider ServiceProvider { get; }
     }
 }

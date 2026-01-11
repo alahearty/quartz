@@ -169,7 +169,7 @@ namespace Quartz.Core.Domain.ReservoirTest
         {
             var deleteReservoirRequest = new DeleteReservoirRequest { Id = 1 };
 
-            var result = _mediator.Send(deleteReservoirRequest).Result;
+            _mediator.Send(deleteReservoirRequest).Wait();
 
 
             var deletedReservoir = _mediator.Send(new GetReservoirByIdRequest { Id = 1 }).Result;
