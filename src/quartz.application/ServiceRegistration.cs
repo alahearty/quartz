@@ -8,7 +8,7 @@ namespace Quartz.Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddMediatR(typeof(CreateReservoirInteractor).Assembly);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateReservoirInteractor).Assembly));
 
             return services;
         }

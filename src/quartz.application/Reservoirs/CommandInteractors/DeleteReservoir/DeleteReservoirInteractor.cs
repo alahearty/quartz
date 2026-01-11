@@ -14,7 +14,7 @@ namespace Quartz.Application.Reservoirs.CommandInteractors
             _reservoirRepository = reservoirRepository;
         }
 
-        public async Task<Unit> Handle(DeleteReservoirRequest request, CancellationToken cancellationToken)
+        public async Task Handle(DeleteReservoirRequest request, CancellationToken cancellationToken)
         {
             var reservoir = _reservoirRepository.GetById(request.Id);
             if(reservoir  == null)
@@ -25,7 +25,7 @@ namespace Quartz.Application.Reservoirs.CommandInteractors
             _reservoirRepository.Delete(reservoir);
             _reservoirRepository.Transaction.Commit();
 
-            return await Task.FromResult(Unit.Value);
+            await Task.CompletedTask;
         }
     }
 }
