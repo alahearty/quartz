@@ -1,6 +1,6 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Events;
-using Microsoft.Practices.Unity;
+﻿using Prism.Commands;
+using Prism.Events;
+using Unity;
 using quartz.application.reservoirs.Views;
 using quartz.wpf.common.Client;
 using quartz.wpf.common.CompositionEvents;

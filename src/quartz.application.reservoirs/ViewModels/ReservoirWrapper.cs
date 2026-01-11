@@ -1,5 +1,6 @@
-﻿using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.ViewModel;
+﻿using Prism.Commands;
+using Prism.Mvvm;
+using System.ComponentModel;
 using quartz.application.reservoirs.ViewModels;
 using quartz.application.reservoirs.Views;
 using quartz.wpf.common.Interfaces;
@@ -13,7 +14,7 @@ using System.Windows;
 
 namespace quartz.application.reservoirs
 {
-    public class ReservoirWrapper: NotificationObject
+    public class ReservoirWrapper: BindableBase
     {
         private readonly ITabDockService tabService;
 

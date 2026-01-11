@@ -1,6 +1,8 @@
-﻿using ActiproSoftware.Windows.Controls.Docking;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Regions;
+﻿#if ACTIPRO
+using ActiproSoftware.Windows.Controls.Docking;
+#endif
+using Prism.Commands;
+using Prism.Regions;
 using quartz.application.reservoirs.Views.ToolWindow;
 using quartz.wpf.common;
 using quartz.wpf.common.Client;

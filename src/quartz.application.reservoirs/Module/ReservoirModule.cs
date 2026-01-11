@@ -1,7 +1,10 @@
-﻿using ActiproSoftware.Windows.Controls.Docking;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Unity;
+﻿#if ACTIPRO
+using ActiproSoftware.Windows.Controls.Docking;
+#endif
+using Prism.Ioc;
+using Prism.Modularity;
+using Prism.Regions;
+using Unity;
 using quartz.application.reservoirs.ViewModels;
 using quartz.application.reservoirs.Views;
 using quartz.application.reservoirs.Views.ToolWindow;
@@ -16,23 +19,23 @@ namespace quartz.application.reservoirs.Module
 {
     public class ReservoirModule : IModule
     {
-        private readonly IUnityContainer unityContainer;
-        private IRegionManager _regionManager;
-        public ReservoirModule(IUnityContainer unityContainer, IRegionManager regionManager)
+        public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            this.unityContainer = unityContainer;
-            _regionManager = regionManager;
+            // Types are registered via Unity container in bootstrapper
         }
 
-        public void Initialize()
+        public void OnInitialized(IContainerProvider containerProvider)
         {
-            _regionManager.Regions[ApplicationRegions.TOOL_WINDOW_CONTAINER]
+            var regionManager = containerProvider.Resolve<IRegionManager>();
+            var unityContainer = containerProvider.Resolve<IUnityContainer>();
+
+            regionManager.Regions[ApplicationRegions.TOOL_WINDOW_CONTAINER]
                 .Add(new ToolWindow() {
                     Title = "Reservoirs",
                     Content = unityContainer.Resolve<AssetExplorer>()
                 }, AssetExplorer.ViewName);
 
-            _regionManager.RegisterViewWithRegion(ApplicationRegions.HOME_RIBBON_TAB_REGION, typeof(ReservoirRibbon));
+            regionManager.RegisterViewWithRegion(ApplicationRegions.HOME_RIBBON_TAB_REGION, typeof(ReservoirRibbon));
         }
     }
 }

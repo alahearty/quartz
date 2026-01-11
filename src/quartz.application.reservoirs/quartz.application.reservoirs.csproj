@@ -1,235 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18C0747D-5E7F-47CD-A731-007734353365}</ProjectGuid>
-    <OutputType>library</OutputType>
-    <RootNamespace>quartz.application.reservoirs</RootNamespace>
-    <AssemblyName>quartz.application.reservoirs</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <Deterministic>true</Deterministic>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="ActiproSoftware.Docking.Wpf, Version=13.1.580.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\..\Libraries\Microsoft.Practices.Prism.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\..\Libraries\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Controls.Ribbon" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="DTO\CreateReservoir\CreateReservoirRequest.cs" />
-    <Compile Include="DTO\CreateReservoir\CreateReservoirResponse.cs" />
-    <Compile Include="DTO\DeleteReservoir\DeleteReservoirRequest.cs" />
-    <Compile Include="DTO\DeleteReservoir\DeleteReservoirResponse.cs" />
-    <Compile Include="DTO\FindReservoir\FindReservoirRequest.cs" />
-    <Compile Include="DTO\FindReservoir\FindReservoirResponse.cs" />
-    <Compile Include="DTO\ListReservoir\ReservoirIndexResponse.cs" />
-    <Compile Include="DTO\ListReservoir\ReservoirListRequest.cs" />
-    <Compile Include="DTO\ListReservoir\ReservoirListResponse.cs" />
-    <Compile Include="DTO\todoReponse.cs" />
-    <Compile Include="DTO\todoRequest.cs" />
-    <Compile Include="DTO\UpdateReservoir\UpdateReservoirRequest.cs" />
-    <Compile Include="DTO\UpdateReservoir\UpdateReservoirResponse.cs" />
-    <Compile Include="Faker.cs" />
-    <Compile Include="Models\ModelBase.cs" />
-    <Compile Include="Models\AquiferParameters.cs" />
-    <Compile Include="Models\BHP.cs" />
-    <Compile Include="Models\Impurities.cs" />
-    <Compile Include="Models\PVT.cs" />
-    <Compile Include="Models\Reservoir.cs" />
-    <Compile Include="Models\ResidualFluidSaturation.cs" />
-    <Compile Include="Models\Rock.cs" />
-    <Compile Include="Models\RockPorosity.cs" />
-    <Compile Include="Module\ReservoirModule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="UrlConstants.cs" />
-    <Compile Include="ViewModels\AssetExplorerViewModel.cs" />
-    <Compile Include="ViewModels\NewReservoirViewModel.cs" />
-    <Compile Include="ViewModels\ReservoirWrapper.cs" />
-    <Compile Include="ViewModels\RibbonBarViewModel.cs" />
-    <Compile Include="Views\NewReservoir.xaml.cs">
-      <DependentUpon>NewReservoir.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Reservoir.xaml.cs">
-      <DependentUpon>Reservoir.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirPage.xaml.cs">
-      <DependentUpon>ReservoirPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirRibbon.xaml.cs">
-      <DependentUpon>ReservoirRibbon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\AquiferParameters.xaml.cs">
-      <DependentUpon>AquiferParameters.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\BHP.xaml.cs">
-      <DependentUpon>BHP.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\Details.xaml.cs">
-      <DependentUpon>Details.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\Impurities.xaml.cs">
-      <DependentUpon>Impurities.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\NavItems.xaml.cs">
-      <DependentUpon>NavItems.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\PVT.xaml.cs">
-      <DependentUpon>PVT.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\Rock.xaml.cs">
-      <DependentUpon>Rock.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\RockSections\ResidualFluidSaturation.xaml.cs">
-      <DependentUpon>ResidualFluidSaturation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\RockSections\RockPermeability.xaml.cs">
-      <DependentUpon>RockPermeability.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReservoirSections\RockSections\RockPorosity.xaml.cs">
-      <DependentUpon>RockPorosity.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ToolWindow\AssetExplorer.xaml.cs">
-      <DependentUpon>AssetExplorer.xaml</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <Reference Include="ActiproSoftware.Docking.Wpf">
+      <HintPath>..\..\Libraries\Actipro\ActiproSoftware.Docking.Wpf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
+
   <ItemGroup>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NewReservoir.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Reservoir.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirRibbon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ReservoirSections\AquiferParameters.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirSections\BHP.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirSections\Details.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirSections\Impurities.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirSections\NavItems.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirSections\PVT.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirSections\Rock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirSections\RockSections\ResidualFluidSaturation.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirSections\RockSections\RockPermeability.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ReservoirSections\RockSections\RockPorosity.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ToolWindow\AssetExplorer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <ProjectReference Include="..\quartz.wpf.common\quartz.wpf.common.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\quartz.wpf.common\quartz.wpf.common.csproj">
-      <Project>{A19F7C9C-B367-471F-8980-0FC0846E380F}</Project>
-      <Name>quartz.wpf.common</Name>
-    </ProjectReference>
-  </ItemGroup>
+
   <ItemGroup>
     <Resource Include="Images\Import.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

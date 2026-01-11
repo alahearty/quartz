@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Prism.ViewModel;
+﻿using Prism.Mvvm;
 using quartz.wpf.common.Client;
 using quartz.wpf.common.Interfaces;
 using quartz.wpf.domain.Models.Reservoirs;
@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace quartz.application.reservoirs.ViewModels
 {
-    public class AssetExplorerViewModel : NotificationObject
+    public class AssetExplorerViewModel : BindableBase
     {
         private ITabDockService tabDockService;
         private static ObservableCollection<ReservoirWrapper> _reservoirs;
