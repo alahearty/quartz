@@ -19,6 +19,21 @@ namespace quartz.wpf.common.Client
             throw new NotImplementedException();
         }
     }
+
+    public class JwtAuthenticator : IAuthenticator
+    {
+        private readonly string _token;
+
+        public JwtAuthenticator(string token)
+        {
+            _token = token;
+        }
+
+        public void Authenticate(IRestClient client, IRestRequest request)
+        {
+            request.AddHeader("Authorization", $"Bearer {_token}");
+        }
+    }
     public class APIClient : IAPIClient
     {
         private readonly IAuthenticationService authenticationService;

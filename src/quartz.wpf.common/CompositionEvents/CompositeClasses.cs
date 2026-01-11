@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Prism.Events;
+﻿using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace quartz.wpf.common.CompositionEvents
 {
-    public class CreateNewReservoirEvent : CompositePresentationEvent<bool>{}
+    public class CreateNewReservoirEvent : PubSubEvent<bool>{}
 }
