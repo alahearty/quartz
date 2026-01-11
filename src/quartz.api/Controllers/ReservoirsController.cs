@@ -67,9 +67,9 @@ namespace quartz.api.Controllers
             }
 
             var deleteReservoirRequest = new DeleteReservoirRequest { Id = id };
-            var result = await _mediator.Send(deleteReservoirRequest);
+            await _mediator.Send(deleteReservoirRequest);
 
-            return Ok(result);
+            return Ok();
         }
     }
 }
