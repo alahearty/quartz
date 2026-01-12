@@ -19,7 +19,7 @@ namespace quartz.application.reservoirs.ViewModels
         private IAPIClient api_client;
 
 
-        public ObservableCollection<ReservoirWrapper> Reservoirs { get => _reservoirs; set { _reservoirs = value; RaisePropertyChanged(() => this.Reservoirs); } }
+        public ObservableCollection<ReservoirWrapper> Reservoirs { get => _reservoirs; set { _reservoirs = value; RaisePropertyChanged(nameof(Reservoirs)); } }
 
         public AssetExplorerViewModel(ITabDockService tabDockService, IAPIClient aPIClient)
         {

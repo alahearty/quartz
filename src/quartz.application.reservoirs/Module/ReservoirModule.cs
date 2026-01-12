@@ -29,11 +29,13 @@ namespace quartz.application.reservoirs.Module
             var regionManager = containerProvider.Resolve<IRegionManager>();
             var unityContainer = containerProvider.Resolve<IUnityContainer>();
 
+#if ACTIPRO
             regionManager.Regions[ApplicationRegions.TOOL_WINDOW_CONTAINER]
                 .Add(new ToolWindow() {
                     Title = "Reservoirs",
                     Content = unityContainer.Resolve<AssetExplorer>()
                 }, AssetExplorer.ViewName);
+#endif
 
             regionManager.RegisterViewWithRegion(ApplicationRegions.HOME_RIBBON_TAB_REGION, typeof(ReservoirRibbon));
         }
